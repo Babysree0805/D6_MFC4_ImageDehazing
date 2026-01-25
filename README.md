@@ -38,7 +38,7 @@ The concepts used in this project are inspired by the following research works:
    Introduces uncertainty-aware dehazing, treats dehazing as a one-to-many problem
    Motivates generating multiple plausible restorations
 
-3. **S. G. Narasimhan and S. K. Nayar, “Vision and the Atmosphere,”  
+2. **S. G. Narasimhan and S. K. Nayar, “Vision and the Atmosphere,”  
    International Journal of Computer Vision, 2002.**  
    https://link.springer.com/article/10.1023/A:1016328200723  
 
@@ -56,12 +56,9 @@ The concepts used in this project are inspired by the following research works:
    This model provides the physical justification for **airlight estimation, transmission modeling, and scene radiance recovery**, and forms the basis of most physics-based single image dehazing methods, including the approach used in this project.
 
 
-4. **A. N. Tikhonov and V. Y. Arsenin, “Solutions of Ill-Posed Problems,”  
+3. **A. N. Tikhonov and V. Y. Arsenin, “Solutions of Ill-Posed Problems,”  
    Wiley, 1977.**  
    https://onlinelibrary.wiley.com/doi/book/10.1002/9780470172799
-
-   3. **A. N. Tikhonov and V. Y. Arsenin, “Solutions of Ill-Posed Problems,” 1977.**  
-   https://onlinelibrary.wiley.com/doi/book/10.1002/9780470172799  
 
    In the physical haze imaging model subtracting the airlight term gives:
 
