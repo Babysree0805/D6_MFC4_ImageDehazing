@@ -14,10 +14,10 @@ This repository contains the MFC-4 course project implementation and documentati
 
 **Team D – 6**
 
-- Sai Jagruth – CB.SC.U4AIE24310 – saijagruth@example.com  
-- Baby Sree – CB.SC.U4AIE24318 – babysree@example.com  
-- Vardhan – CB.SC.U4AIE24320 – vardhan@example.com  
-- Likitha Reddy – CB.SC.U4AIE24361 – likithareddy@example.com  
+- Sai Jagruth – CB.SC.U4AIE24310  
+- Baby Sree – CB.SC.U4AIE24318
+- Vardhan – CB.SC.U4AIE24320
+- Likitha Reddy – CB.SC.U4AIE24361
 
 ---
 
