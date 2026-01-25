@@ -52,7 +52,7 @@ These papers provide the theoretical foundation for uncertainty modeling, the ph
 - Estimate airlight and transmission using the atmospheric scattering model.
 - Generate multiple dehazed images by varying transmission, blur scale, and regularization parameters.
 - Apply a regularized pseudo-inverse to avoid instability and brightness amplification.
-- Fuse the multiple dehazed results in the frequency domain.
+- Fuse the multiple dehazed results in the frequency domain - We fuse in the frequency domain because the multiple dehazed results mainly differ in their high-frequency details, while the low-frequency structure remains consistent. Frequency-domain fusion preserves stable structures and suppresses inconsistent artifacts better than direct spatial averaging.
 - Perform RGB color correction to obtain a stable and natural-looking output.
 - Adapt parameters automatically based on haze density.
 
@@ -63,9 +63,8 @@ These papers provide the theoretical foundation for uncertainty modeling, the ph
 - Implemented the complete dehazing pipeline in MATLAB.
 - Added uncertainty handling inspired by CVAE concepts.
 - Improved stability using pseudo-inverse regularization.
-- Enhanced performance for thick haze using adaptive parameter selection.
 - Ensured final output is always in RGB format.
-- The project runs without the need for training, GPUs, or large datasets.
+- The project runs without the need for training (usually CVAE requires training).
 
 ---
 
@@ -81,11 +80,8 @@ These papers provide the theoretical foundation for uncertainty modeling, the ph
 
 ## Future Plans
 
-- Extend the approach to thin cloud removal in remote sensing images.
-- Add quantitative evaluation metrics such as PSNR and SSIM.
-- Compare results with classical dehazing techniques.
-- Explore hybrid methods combining physical models with lightweight learning.
-- Improve transmission estimation using edge-aware or multi-scale techniques.
+- Improve transmission estimation using multi-scale techniques.
+- Adaptive handling for **thin, moderate, and thick haze** conditions.
 
 ---
 
