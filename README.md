@@ -131,8 +131,5 @@ These papers provide the theoretical foundation for uncertainty modeling, the ph
 - Adaptive handling for **thin, moderate, and thick haze** conditions.
 
 ---
-
-## Notes
-
 This project emphasizes **physical interpretability and explainability** rather than black-box learning methods.  
 It demonstrates how uncertainty modeling ideas can be applied using classical inverse problem techniques.
