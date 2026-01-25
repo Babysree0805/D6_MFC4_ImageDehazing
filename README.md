@@ -51,7 +51,7 @@ Unlike deep learning based methods, this approach **does not involve training or
 
 Instead of producing only one dehazed image, the method generates **multiple plausible dehazed outputs** by slightly varying the parameters of the physical haze inversion model. These outputs represent uncertainty in the dehazing process. The results are then **fused** to obtain a stable and visually balanced final RGB image.
 
-![Method Overview](IMG_MFC.png)
+![Method Overview](doc/figures/IMG_MFC.png)
 
 The method is built using a **physics-based haze imaging model** and a **regularized pseudo-inverse formulation**.
 
