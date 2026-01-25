@@ -1,133 +1,189 @@
 # D6_MFC4_ImageDehazing
-This Repo has the details of the MFC-4 Project.
 
+This repository contains the MFC-4 course project implementation and documentation.
 
-# UNCERTAINTY-AWARE IMAGE DEHAZING USING PSEUDO-INVERSE MODELING INSPIRED BY CVAE
+---
+
+## Project Title
+
+**Uncertainty-Aware Image Dehazing Using Pseudo-Inverse Modeling Inspired by CVAE**
+
+---
 
 ## Team Details
 
 **Team D – 6**
 
-- Sai Jagruth – CB.SC.U4AIE24310  
-- Baby Sree – CB.SC.U4AIE24318  
-- Vardhan – CB.SC.U4AIE24320  
-- Likitha Reddy – CB.SC.U4AIE24361  
+- Sai Jagruth – CB.SC.U4AIE24310 – saijagruth@example.com  
+- Baby Sree – CB.SC.U4AIE24318 – babysree@example.com  
+- Vardhan – CB.SC.U4AIE24320 – vardhan@example.com  
+- Likitha Reddy – CB.SC.U4AIE24361 – likithareddy@example.com  
+
+---
+
+## Objective
+
+The objective of this project is to develop a **single image dehazing method** that is:
+- Uncertainty-aware
+- Physically interpretable
+- Free from training or large datasets
+
+The goal is to generate a **stable and visually balanced dehazed RGB image** by modeling uncertainty in the haze inversion process.
+
+---
+
+## Motivation / Why This Project Is Interesting
+
+Most modern dehazing methods rely on **deep learning models** that require large datasets and training, and often behave as black boxes.
+
+This project is motivated by the idea that:
+- Image dehazing is an **ill-posed inverse problem**
+- A single hazy image can have **multiple valid dehazed solutions**
+- Uncertainty should be **modeled explicitly**, not ignored
+
+Inspired by CVAE-based uncertainty modeling, we explore how similar ideas can be applied **without learning**, using **physics-based models and inverse problem theory**.
 
 ---
 
 ## Project Description
 
-This project focuses on **single image dehazing** using an **uncertainty-aware approach** inspired by the idea of Conditional Variational Autoencoders (CVAE).  
+This project focuses on **single image dehazing** using an **uncertainty-aware approach** inspired by Conditional Variational Autoencoders (CVAE).  
 Unlike deep learning based methods, this approach **does not involve training or datasets**.
 
-Instead of producing only one dehazed image, the method generates **multiple plausible dehazed outputs** by slightly varying the parameters of the physical haze inversion model. These multiple outputs represent uncertainty in the dehazing process. The results are then **fused** to obtain a stable and visually balanced final RGB image.
+Instead of producing only one dehazed image, the method generates **multiple plausible dehazed outputs** by slightly varying the parameters of the physical haze inversion model. These outputs represent uncertainty in the dehazing process. The results are then **fused** to obtain a stable and visually balanced final RGB image.
+
 ![Method Overview](IMG_MFC.png)
 
-The method is built using a **physics-based haze imaging model** and a **regularized pseudo-inverse formulation**
+The method is built using a **physics-based haze imaging model** and a **regularized pseudo-inverse formulation**.
 
 ---
 
-## Base / Reference Papers
+## Methodology
 
-The concepts used in this project are inspired by the following research works:
+### 1. Physical Haze Imaging Model
 
-1. **H. Ding et al., “Robust Haze and Thin Cloud Removal via Conditional Variational Autoencoders,”  
-   IEEE Transactions on Geoscience and Remote Sensing, 2024.**  
-   https://ieeexplore.ieee.org/document/10394023
+The atmospheric scattering model is used:
 
-   Introduces uncertainty-aware dehazing, treats dehazing as a one-to-many problem
-   Motivates generating multiple plausible restorations
+\[
+I(x) = t(x) J(x) + (1 - t(x)) A
+\]
 
-2. **S. G. Narasimhan and S. K. Nayar, “Vision and the Atmosphere,”  
-   International Journal of Computer Vision, 2002.**  
-   https://link.springer.com/article/10.1023/A:1016328200723  
-
-   This is the foundational work that introduces the **physical haze imaging model** based on atmospheric scattering.  
-   The paper formulates the image formation process as:
-
-   I(x) = t(x) J(x) + (1 − t(x)) A
-
-   where:
-   - I(x) is the observed hazy image,
-   - J(x) is the scene radiance (clean image),
-   - t(x) is the transmission map representing scene depth and haze density,
-   - A is the global atmospheric light (airlight).
-
-   This model provides the physical justification for **airlight estimation, transmission modeling, and scene radiance recovery**, and forms the basis of most physics-based single image dehazing methods, including the approach used in this project.
-
-
-3. **A. N. Tikhonov and V. Y. Arsenin, “Solutions of Ill-Posed Problems,”  
-   Wiley, 1977.**  
-   https://onlinelibrary.wiley.com/doi/book/10.1002/9780470172799
-
-   In the physical haze imaging model subtracting the airlight term gives:
-
-   I(x) − A = t(x) [J(x) − A]
-
-   This equation can be written in linear inverse form as:
-
-   I − A = H (J − A),  where H = t(x)
-
-   Here, **H represents the forward degradation operator**,
-
-   Recovering the clean image requires inverting H. A direct inverse,
-
-   H⁻¹ = 1 / t,
-
-   becomes unstable when t is small, which is common in dense haze. This leads to severe noise amplification and brightness distortion, making the problem ill-posed.
-
-   Tikhonov regularization stabilizes this inversion by introducing a regularization parameter λ.  
-   The resulting **regularized pseudo-inverse** is given by:
-
-   H† = H / (H² + λ)
-
-   Substituting H = t(x), we obtain:
-
-   H† = t / (t² + λ)
-
-   This formulation prevents division by very small transmission values, controls noise amplification, and ensures stable reconstruction.
-
-These papers provide the theoretical foundation for uncertainty modeling, the physical haze imaging equation, and regularized inverse reconstruction.
+where:
+- \(I(x)\) is the observed hazy image  
+- \(J(x)\) is the clean image  
+- \(t(x)\) is the transmission map  
+- \(A\) is the atmospheric light (airlight)
 
 ---
 
-## Project Outline
+### 2. Inverse Problem Formulation
 
-- Read a single RGB hazy image as input.
-- Estimate airlight and transmission using the atmospheric scattering model.
-- Generate multiple dehazed images by varying transmission, blur scale, and regularization parameters.
-- Apply a regularized pseudo-inverse to avoid instability and brightness amplification.
-- Fuse the multiple dehazed results in the frequency domain - We fuse in the frequency domain because the multiple dehazed results mainly differ in their high-frequency details, while the low-frequency structure remains consistent. Frequency-domain fusion preserves stable structures and suppresses inconsistent artifacts better than direct spatial averaging.
-- Perform RGB color correction to obtain a stable and natural-looking output.
-- Adapt parameters automatically based on haze density.
+Subtracting airlight:
+
+\[
+I - A = t(x) (J - A)
+\]
+
+This is written as a linear inverse problem:
+
+\[
+I - A = H (J - A), \quad H = t(x)
+\]
+
+Direct inversion \(H^{-1} = 1/t\) is unstable when transmission is small.
 
 ---
 
-## Updates
+### 3. Regularized Pseudo-Inverse
 
-- Implemented the complete dehazing pipeline in MATLAB.
-- Added uncertainty handling inspired by CVAE concepts.
-- Improved stability using pseudo-inverse regularization.
-- Ensured final output is always in RGB format.
-- The project runs without the need for training (usually CVAE requires training).
+Using Tikhonov regularization, the stable pseudo-inverse is:
+
+\[
+H^\dagger = \frac{H}{H^2 + \lambda} = \frac{t}{t^2 + \lambda}
+\]
+
+This prevents noise amplification and brightness explosion in dense haze regions.
+
+---
+
+### 4. CVAE-Inspired Uncertainty Modeling
+
+Instead of training a CVAE, uncertainty is modeled by:
+- Varying transmission blur scales
+- Varying regularization parameters \( \lambda \)
+
+Each parameter set produces a **plausible dehazed image**, forming a one-to-many mapping similar to CVAE outputs.
+
+---
+
+### 5. Toy Example (Conceptual)
+
+If a single hazy pixel has uncertain transmission values \(t_1, t_2, t_3\), then:
+
+\[
+J_k = \frac{t_k}{t_k^2 + \lambda}(I - A) + A
+\]
+
+This produces multiple valid reconstructions \(J_1, J_2, J_3\), which are later fused.
+
+---
+
+### 6. Fusion Strategy
+
+The multiple dehazed outputs are fused in the **frequency domain**:
+
+- Low-frequency components remain consistent
+- High-frequency artifacts vary across samples
+
+Frequency-domain fusion preserves structure and suppresses inconsistent artifacts better than spatial averaging.
+
+---
+
+### 7. Color Correction
+
+Final RGB balancing is applied using a gray-world based scaling to maintain color consistency.
+
+---
+
+## Results & Discussion
+
+- The method produces stable dehazed outputs for thin and moderate haze.
+- Multiple reconstructions help reduce artifacts caused by incorrect parameter selection.
+- Thick haze remains challenging due to severe information loss, but regularization improves stability.
+- The approach is fully explainable and physically grounded.
 
 ---
 
 ## Challenges / Issues Faced
 
 - Direct inversion caused over-brightness and color distortion.
-- Thick haze leads to significant information loss, limiting recovery quality.
-- A single set of parameters did not work well for all haze conditions.
-- Balancing contrast enhancement without introducing artifacts.
-- Maintaining consistent color appearance across different images.
+- Thick haze leads to significant information loss.
+- Single parameter settings failed across all haze conditions.
+- Balancing enhancement without artifacts required careful tuning.
 
 ---
 
 ## Future Plans
 
 - Improve transmission estimation using multi-scale techniques.
-- Adaptive handling for **thin, moderate, and thick haze** conditions.
+- Extend the approach to thin cloud removal in remote sensing images.
+- Add quantitative evaluation metrics such as PSNR and SSIM.
+- Explore hybrid approaches combining physics and lightweight learning.
 
 ---
-This project emphasizes **physical interpretability and explainability** rather than black-box learning methods.  
-It demonstrates how uncertainty modeling ideas can be applied using classical inverse problem techniques.
+
+## References
+
+1. H. Ding et al., *Robust Haze and Thin Cloud Removal via Conditional Variational Autoencoders*, IEEE TGRS, 2024.  
+   https://ieeexplore.ieee.org/document/10394023  
+
+2. S. G. Narasimhan and S. K. Nayar, *Vision and the Atmosphere*, IJCV, 2002.  
+   https://link.springer.com/article/10.1023/A:1016328200723  
+
+3. A. N. Tikhonov and V. Y. Arsenin, *Solutions of Ill-Posed Problems*, 1977.  
+   https://onlinelibrary.wiley.com/doi/book/10.1002/9780470172799  
+
+---
+
+## Content and Folder Structure
+
