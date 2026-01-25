@@ -169,8 +169,8 @@ Final RGB balancing is applied using a gray-world based scaling to maintain colo
 1. H. Ding et al., *Robust Haze and Thin Cloud Removal via Conditional Variational Autoencoders*, IEEE TGRS, 2024.  
    https://ieeexplore.ieee.org/document/10394023  
 
-2. S. G. Narasimhan and S. K. Nayar, *Vision and the Atmosphere*, IJCV, 2002.  
-   https://link.springer.com/article/10.1023/A:1016328200723  
+2. K. He, J. Sun and X. Tang, "Single Image Haze Removal Using Dark Channel Prior," in IEEE Transactions on Pattern Analysis and Machine Intelligence 
+   https://ieeexplore.ieee.org/document/5567108
 
 3. A. N. Tikhonov and V. Y. Arsenin, *Solutions of Ill-Posed Problems*, 1977.  
    https://onlinelibrary.wiley.com/doi/book/10.1002/9780470172799  
