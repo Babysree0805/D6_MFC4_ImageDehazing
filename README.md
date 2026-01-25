@@ -63,9 +63,7 @@ The method is built using a **physics-based haze imaging model** and a **regular
 
 The atmospheric scattering model is used:
 
-\[
-I(x) = t(x) J(x) + (1 - t(x)) A
-\]
+I(x) = t(x) * J(x) + (1 - t(x)) * A
 
 where:
 - \(I(x)\) is the observed hazy image  
@@ -79,17 +77,15 @@ where:
 
 Subtracting airlight:
 
-\[
-I - A = t(x) (J - A)
-\]
+I(x) - A = t(x) * (J(x) - A)
 
 This is written as a linear inverse problem:
 
-\[
-I - A = H (J - A), \quad H = t(x)
-\]
+I - A = H * (J - A)
 
-Direct inversion \(H^{-1} = 1/t\) is unstable when transmission is small.
+where: H = t(x)
+
+Direct inversion H⁻¹ = 1 / t is unstable when transmission is small.
 
 ---
 
@@ -97,9 +93,11 @@ Direct inversion \(H^{-1} = 1/t\) is unstable when transmission is small.
 
 Using Tikhonov regularization, the stable pseudo-inverse is:
 
-\[
-H^\dagger = \frac{H}{H^2 + \lambda} = \frac{t}{t^2 + \lambda}
-\]
+H† = H / (H² + λ)
+
+Substituting H = t(x):
+
+H† = t / (t² + λ)
 
 This prevents noise amplification and brightness explosion in dense haze regions.
 
@@ -117,13 +115,11 @@ Each parameter set produces a **plausible dehazed image**, forming a one-to-many
 
 ### 5. Toy Example (Conceptual)
 
-If a single hazy pixel has uncertain transmission values \(t_1, t_2, t_3\), then:
+If a single hazy pixel has uncertain transmission values \(t1, t2, t3\), then:
 
-\[
-J_k = \frac{t_k}{t_k^2 + \lambda}(I - A) + A
-\]
+Jk = (tk / (tk² + λ)) * (I - A) + A
 
-This produces multiple valid reconstructions \(J_1, J_2, J_3\), which are later fused.
+This produces multiple valid reconstructions \(J1, J2, J3\), which are later fused.
 
 ---
 
