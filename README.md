@@ -32,15 +32,62 @@ The concepts used in this project are inspired by the following research works:
 
 1. **H. Ding et al., “Robust Haze and Thin Cloud Removal via Conditional Variational Autoencoders,”  
    IEEE Transactions on Geoscience and Remote Sensing, 2024.**  
-   https://ieeexplore.ieee.org/document/10394023  
+   https://ieeexplore.ieee.org/document/10394023
 
-2. **S. G. Narasimhan and S. K. Nayar, “Vision and the Atmosphere,”  
+   Introduces uncertainty-aware dehazing, treats dehazing as a one-to-many problem
+   Motivates generating multiple plausible restorations
+
+3. **S. G. Narasimhan and S. K. Nayar, “Vision and the Atmosphere,”  
    International Journal of Computer Vision, 2002.**  
    https://link.springer.com/article/10.1023/A:1016328200723  
 
-3. **A. N. Tikhonov and V. Y. Arsenin, “Solutions of Ill-Posed Problems,”  
+   This is the foundational work that introduces the **physical haze imaging model** based on atmospheric scattering.  
+   The paper formulates the image formation process as:
+
+   I(x) = t(x) J(x) + (1 − t(x)) A
+
+   where:
+   - I(x) is the observed hazy image,
+   - J(x) is the scene radiance (clean image),
+   - t(x) is the transmission map representing scene depth and haze density,
+   - A is the global atmospheric light (airlight).
+
+   This model provides the physical justification for **airlight estimation, transmission modeling, and scene radiance recovery**, and forms the basis of most physics-based single image dehazing methods, including the approach used in this project.
+
+
+4. **A. N. Tikhonov and V. Y. Arsenin, “Solutions of Ill-Posed Problems,”  
    Wiley, 1977.**  
+   https://onlinelibrary.wiley.com/doi/book/10.1002/9780470172799
+
+   3. **A. N. Tikhonov and V. Y. Arsenin, “Solutions of Ill-Posed Problems,” 1977.**  
    https://onlinelibrary.wiley.com/doi/book/10.1002/9780470172799  
+
+   In the physical haze imaging model subtracting the airlight term gives:
+
+   I(x) − A = t(x) [J(x) − A]
+
+   This equation can be written in linear inverse form as:
+
+   I − A = H (J − A),  where H = t(x)
+
+   Here, **H represents the forward degradation operator**,
+
+   Recovering the clean image requires inverting H. A direct inverse,
+
+   H⁻¹ = 1 / t,
+
+   becomes unstable when t is small, which is common in dense haze. This leads to severe noise amplification and brightness distortion, making the problem ill-posed.
+
+   Tikhonov regularization stabilizes this inversion by introducing a regularization parameter λ.  
+   The resulting **regularized pseudo-inverse** is given by:
+
+   H† = H / (H² + λ)
+
+   Substituting H = t(x), we obtain:
+
+   H† = t / (t² + λ)
+
+   This formulation prevents division by very small transmission values, controls noise amplification, and ensures stable reconstruction.
 
 These papers provide the theoretical foundation for uncertainty modeling, the physical haze imaging equation, and regularized inverse reconstruction.
 
