@@ -2,9 +2,7 @@
 This project implements a single-image dehazing method inspired by CVAE ideas, without training. It generates multiple plausible dehazed results by varying haze inversion parameters to model uncertainty, then fuses them into a stable RGB output using a regularized pseudo-inverse model that adapts to thin, moderate, and thick haze.
 
 
-# Uncertainty-Aware Image Dehazing UNCERTAINTY-AWARE IMAGE DEHAZING USING PSEUDO-INVERSE MODELING INSPIRED BY CVAE
-<img width="5128" height="220" alt="image" src="https://github.com/user-attachments/assets/d09a1641-f765-4715-b9a4-79857b2d6dac" />
-
+# UNCERTAINTY-AWARE IMAGE DEHAZING USING PSEUDO-INVERSE MODELING INSPIRED BY CVAE
 
 ## Team Details
 
