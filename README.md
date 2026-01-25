@@ -2,7 +2,9 @@
 This project implements a single-image dehazing method inspired by CVAE ideas, without training. It generates multiple plausible dehazed results by varying haze inversion parameters to model uncertainty, then fuses them into a stable RGB output using a regularized pseudo-inverse model that adapts to thin, moderate, and thick haze.
 
 
-# Uncertainty-Aware Image Dehazing
+# Uncertainty-Aware Image Dehazing UNCERTAINTY-AWARE IMAGE DEHAZING USING PSEUDO-INVERSE MODELING INSPIRED BY CVAE
+<img width="5128" height="220" alt="image" src="https://github.com/user-attachments/assets/d09a1641-f765-4715-b9a4-79857b2d6dac" />
+
 
 ## Team Details
 
@@ -20,21 +22,29 @@ This project implements a single-image dehazing method inspired by CVAE ideas, w
 This project focuses on **single image dehazing** using an **uncertainty-aware approach** inspired by the idea of Conditional Variational Autoencoders (CVAE).  
 Unlike deep learning based methods, this approach **does not involve training or datasets**.
 
-Instead of producing only one dehazed image, the method generates **multiple possible dehazed outputs** by slightly varying the parameters of the physical haze inversion model. These multiple outputs represent the uncertainty present in the dehazing process. The results are then **combined (fused)** to obtain a stable and visually balanced final RGB image.
+Instead of producing only one dehazed image, the method generates **multiple plausible dehazed outputs** by slightly varying the parameters of the physical haze inversion model. These multiple outputs represent uncertainty in the dehazing process. The results are then **fused** to obtain a stable and visually balanced final RGB image.
 
-The method is built using a **physics-based haze model** and a **regularized pseudo-inverse formulation**, with adaptive handling for **thin, moderate, and thick haze** conditions.
+The method is built using a **physics-based haze imaging model** and a **regularized pseudo-inverse formulation**, with adaptive handling for **thin, moderate, and thick haze** conditions.
 
 ---
 
 ## Base / Reference Papers
 
-The concepts used in this project are inspired by the following works:
+The concepts used in this project are inspired by the following research works:
 
-1. Ding et al., *Robust Haze and Thin Cloud Removal via Conditional Variational Autoencoders*, IEEE Transactions on Geoscience and Remote Sensing, 2024.  
-2. Narasimhan and Nayar, *Vision and the Atmosphere*, International Journal of Computer Vision, 2002.  
-3. Tikhonov and Arsenin, *Solutions of Ill-Posed Problems*, 1977.
+1. **H. Ding et al., “Robust Haze and Thin Cloud Removal via Conditional Variational Autoencoders,”  
+   IEEE Transactions on Geoscience and Remote Sensing, 2024.**  
+   https://ieeexplore.ieee.org/document/10394023  
 
-These papers provide the foundation for uncertainty modeling, the physical haze imaging model, and regularized inverse problem solving.
+2. **S. G. Narasimhan and S. K. Nayar, “Vision and the Atmosphere,”  
+   International Journal of Computer Vision, 2002.**  
+   https://link.springer.com/article/10.1023/A:1016328200723  
+
+3. **A. N. Tikhonov and V. Y. Arsenin, “Solutions of Ill-Posed Problems,”  
+   Wiley, 1977.**  
+   https://onlinelibrary.wiley.com/doi/book/10.1002/9780470172799  
+
+These papers provide the theoretical foundation for uncertainty modeling, the physical haze imaging equation, and regularized inverse reconstruction.
 
 ---
 
@@ -64,9 +74,9 @@ These papers provide the foundation for uncertainty modeling, the physical haze 
 ## Challenges / Issues Faced
 
 - Direct inversion caused over-brightness and color distortion.
-- Thick haze results in significant information loss, limiting recovery.
-- A single set of parameters did not work well for all haze levels.
-- Balancing contrast enhancement without introducing artifacts was difficult.
+- Thick haze leads to significant information loss, limiting recovery quality.
+- A single set of parameters did not work well for all haze conditions.
+- Balancing contrast enhancement without introducing artifacts.
 - Maintaining consistent color appearance across different images.
 
 ---
@@ -83,5 +93,5 @@ These papers provide the foundation for uncertainty modeling, the physical haze 
 
 ## Notes
 
-This project emphasizes **physical interpretability and explainability** over black-box learning methods.  
+This project emphasizes **physical interpretability and explainability** rather than black-box learning methods.  
 It demonstrates how uncertainty modeling ideas can be applied using classical inverse problem techniques.
