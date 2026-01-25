@@ -25,14 +25,13 @@ This repository contains the MFC-4 course project implementation and documentati
 
 The objective of this project is to develop a **single image dehazing method** that is:
 - Uncertainty-aware
-- Physically interpretable
-- Free from training or large datasets
+- Free from training unlike CVAE
 
 The goal is to generate a **stable and visually balanced dehazed RGB image** by modeling uncertainty in the haze inversion process.
 
 ---
 
-## Motivation / Why This Project Is Interesting
+## Motivation 
 
 Most modern dehazing methods rely on **deep learning models** that require large datasets and training, and often behave as black boxes.
 
@@ -149,8 +148,7 @@ Final RGB balancing is applied using a gray-world based scaling to maintain colo
 
 - The method produces stable dehazed outputs for thin and moderate haze.
 - Multiple reconstructions help reduce artifacts caused by incorrect parameter selection.
-- Thick haze remains challenging due to severe information loss, but regularization improves stability.
-- The approach is fully explainable and physically grounded.
+- Thick haze remains challenging due to severe information loss.
 
 ---
 
@@ -166,9 +164,7 @@ Final RGB balancing is applied using a gray-world based scaling to maintain colo
 ## Future Plans
 
 - Improve transmission estimation using multi-scale techniques.
-- Extend the approach to thin cloud removal in remote sensing images.
-- Add quantitative evaluation metrics such as PSNR and SSIM.
-- Explore hybrid approaches combining physics and lightweight learning.
+- Adaptive handling for **thin, moderate, and thick haze** conditions.
 
 ---
 
@@ -184,6 +180,4 @@ Final RGB balancing is applied using a gray-world based scaling to maintain colo
    https://onlinelibrary.wiley.com/doi/book/10.1002/9780470172799  
 
 ---
-
-## Content and Folder Structure
 
