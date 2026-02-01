@@ -172,8 +172,5 @@ Final RGB balancing is applied using a gray-world based scaling to maintain colo
 2. K. He, J. Sun and X. Tang, "Single Image Haze Removal Using Dark Channel Prior," in IEEE Transactions on Pattern Analysis and Machine Intelligence 
    https://ieeexplore.ieee.org/document/5567108
 
-3. A. N. Tikhonov and V. Y. Arsenin, *Solutions of Ill-Posed Problems*, 1977.  
-   https://onlinelibrary.wiley.com/doi/book/10.1002/9780470172799  
-
 ---
 
