@@ -19,7 +19,7 @@ Update v2 resolves these issues by adding adaptive parameter tuning and uncertai
 ## Results
 
 ### Input Image
-![Input](images/input.png)
+![Input](images/Screenshot 2026-02-28 013907.png)
 
 ### Dehazed Output
 ![Output](images/output.png)
