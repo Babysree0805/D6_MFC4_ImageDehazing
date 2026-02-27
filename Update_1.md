@@ -16,18 +16,8 @@ The previous implementation worked well for thin and moderate haze, but failed i
 
 Update v2 resolves these issues by adding adaptive parameter tuning and uncertainty-style multi-sample fusion.
 
-
-## Results
-
-<p align="center">
-  <img src="images/input.png" width="45%" />
-  <img src="images/output.png" width="45%" />
-</p>
-
-<p align="center">
-  <b>Left:</b> Input Hazy Image &nbsp;&nbsp;&nbsp;
-  <b>Right:</b> Dehazed Output (v2)
-</p>
+![Input Image](doc/figures/Input.png)
+![OutPut](doc/figures/Output.png)
 
 What's New in v2 ?
 
@@ -43,13 +33,8 @@ What's New in v2 ?
 
 => Frobenius norm–based quantitative analysis
 
-## Results
-
-### Input Image
-![Input](images/Input.png)
-
-### Dehazed Output
-![Output](images/Output1.png)
+![Input Image](doc/figures/Input.png)
+![OutPut](doc/figures/Output1.png)
 
 *Methodology*
 1) Atmospheric Light Estimation
