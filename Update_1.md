@@ -44,7 +44,7 @@ What's New in v2 ?
 ![Input](images/input.png)
 
 ### Dehazed Output
-![Output](images/output1.png)
+![Output](images/Screenshot 2026-02-28 014010.png)
 
 *Methodology*
 1) Atmospheric Light Estimation
