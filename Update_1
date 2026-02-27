@@ -16,13 +16,13 @@ The previous implementation worked well for thin and moderate haze, but failed i
 
 Update v2 resolves these issues by adding adaptive parameter tuning and uncertainty-style multi-sample fusion.
 
-## Results
+Results
 
-### Input Image
+Input Image
 ![Input](images/Screenshot 2026-02-28 013907.png)
 
-### Dehazed Output
-![Output](images/output.png)
+Dehazed Output
+![Output](images/Screenshot 2026-02-28 013951.png)
 
 What's New in v2 ?
 
