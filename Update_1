@@ -19,10 +19,10 @@ Update v2 resolves these issues by adding adaptive parameter tuning and uncertai
 Results
 
 Input Image
-![Input](images/Screenshot 2026-02-28 013907.png)
+![Input](images/Input.png)
 
 Dehazed Output
-![Output](images/Screenshot 2026-02-28 013951.png)
+![Output](images/Output.png)
 
 What's New in v2 ?
 
@@ -41,10 +41,10 @@ What's New in v2 ?
 ## Results
 
 ### Input Image
-![Input](images/input.png)
+![Input](images/Input.png)
 
 ### Dehazed Output
-![Output](images/output1.png)
+![Output](images/Output1.png)
 
 *Methodology*
 1) Atmospheric Light Estimation
