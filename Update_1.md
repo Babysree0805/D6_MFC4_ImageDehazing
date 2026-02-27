@@ -1,0 +1,103 @@
+Adaptive Haze Removal
+Update 1 – v2
+Overview
+
+This update improves the initial haze removal pipeline by introducing adaptive regularization and multi-sample restoration.
+
+The previous implementation worked well for thin and moderate haze, but failed in thick haze conditions due to:
+
+=> Over-amplification
+
+=> Poor contrast recovery
+
+=> Noise boosting
+
+=> Fixed regularization parameters
+
+Update v2 resolves these issues by adding adaptive parameter tuning and uncertainty-style multi-sample fusion.
+
+![Input Image](doc/figures/Input.png)
+![OutPut](doc/figures/Output.png)
+
+What's New in v2 ?
+
+=> Automatic haze strength estimation
+
+=> Adaptive lambda regularization
+
+=> Multi-sample restoration (4 samples)
+
+=> Frequency-domain fusion
+
+=> Thick haze contrast enhancement
+
+=> Frobenius norm–based quantitative analysis
+
+![Input Image](doc/figures/Input.png)
+![OutPut](doc/figures/Output1.png)
+
+*Methodology*
+1) Atmospheric Light Estimation
+
+Estimated from the top 0.1% brightest grayscale pixels:
+
+sortedPixels = sort(I_gray(:),'descend');
+topPixels = sortedPixels(1:round(0.001*numel(sortedPixels)));
+A_gray = mean(topPixels);
+A = [A_gray A_gray A_gray];
+2) Transmission Estimation
+
+Smoothed grayscale transmission map:
+
+W = fspecial('average',[15 15]);
+t0 = 1 - imfilter(I_gray, W, 'replicate');
+t0 = min(max(t0,0.3),0.9);
+3) Haze Strength Estimation
+hazeStrength = mean(1 - t0(:));
+
+This determines whether the scene contains:
+
+Thin/Moderate haze
+
+Thick haze
+
+4) Adaptive Lambda Selection
+if hazeStrength > 0.6
+    lambdaSet = [0.2 0.3 0.4 0.6];      % Thick haze
+else
+    lambdaSet = [0.05 0.10 0.20 0.35];  % Thin / Moderate haze
+end
+
+- Prevents instability
+- Controls over-enhancement
+
+5) Multi-Sample Restoration
+
+Four blur variations:
+
+blurSet = [5 11 21 31];
+
+Regularized pseudo-inverse recovery:
+
+H_pinv = tk ./ (tk.^2 + lambda);
+J = H_pinv .* (I - A) + A;
+
+Generates 4 plausible restored outputs.
+
+6) Frequency-Domain Fusion
+Fsum = Fsum + fft2(Jset(:,:,c,k));
+Ffused(:,:,c) = real(ifft2(Fsum / numSamples));
+
+- Stabilizes restoration
+- Improves detail consistency
+
+7️) Thick Haze Contrast Recovery
+
+Applied only for dense haze:
+
+adapthisteq(...,'ClipLimit',0.01,'Distribution','rayleigh');
+8️) RGB Color Correction
+scale = meanRGB_I ./ meanRGB_J;
+scale = min(max(scale,0.9),1.1);
+
+Preserves natural color balance.
