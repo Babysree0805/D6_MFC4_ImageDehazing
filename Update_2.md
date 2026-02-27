@@ -37,7 +37,7 @@ Haze Removed Energy
 
 Percentage Haze Reduction
 
-![Metrics Calculated](doc/images/metrics.png)
+![Metrics Calculated](doc/figures/metrics.png)
 
 This ensures physical consistency of restoration.
 
@@ -85,8 +85,8 @@ Two radial haze patches are generated with smooth Gaussian blending:
 
 t_true = imgaussfilt(t_true,4);
 
-![Input](doc/images/patchwise.png)
-![Synthetic Haze patches](doc/images/patchwise.png)
+![Input](doc/figures/patchwise.png)
+![Synthetic Haze patches](doc/figures/patchwise.png)
 
 This creates localized haze regions while preserving the rest of the image.
 
@@ -110,7 +110,7 @@ Haze removed
 
 But non-hazy regions slightly altered
 
-![Input](doc/images/global.png)
+![Input](doc/figures/global.png)
 
 4) Patch-Only Selective Blending (Key Contribution)
 
@@ -124,7 +124,7 @@ J_final(:,:,c) = ...
     hazeMask .* Ffused(:,:,c) + ...
     (1-hazeMask).*I(:,:,c);
 
-![Input](doc/images/patchout.png)
+![Input](doc/figures/patchout.png)
     
 What we Achieved:
 
