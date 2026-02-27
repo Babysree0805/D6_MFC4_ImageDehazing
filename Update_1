@@ -16,13 +16,18 @@ The previous implementation worked well for thin and moderate haze, but failed i
 
 Update v2 resolves these issues by adding adaptive parameter tuning and uncertainty-style multi-sample fusion.
 
-Results
 
-Input Image
-![Input](images/Input.png)
+## Results
 
-Dehazed Output
-![Output](images/Output.png)
+<p align="center">
+  <img src="images/input.png" width="45%" />
+  <img src="images/output.png" width="45%" />
+</p>
+
+<p align="center">
+  <b>Left:</b> Input Hazy Image &nbsp;&nbsp;&nbsp;
+  <b>Right:</b> Dehazed Output (v2)
+</p>
 
 What's New in v2 ?
 
