@@ -1,5 +1,5 @@
 
-# Uncertainty-Aware Image Dehazing (Evaluation 2)
+# Uncertainty-Aware Image Dehazing
 
 ## Mathematics for Computing 4 – Project
 Amrita School of Artificial Intelligence  
@@ -131,6 +131,15 @@ Final image is recovered using inverse Fourier transform.
 
 ---
 
+# Results
+![Result](Figures/Drawing3.jpg)
+
+*Figure: Dehazed image produced by the proposed method with 3 different types of haze.*
+
+![Result](Figures/Drawing1.jpg)
+
+*Figure: Dehazed image produced by the proposed method in different regions.*
+
 # Patch-wise Haze Modeling
 
 Real haze varies spatially. To simulate this:
@@ -165,6 +174,10 @@ This prevents modifying already clear regions.
 
 ---
 
+![Result](Figures/Drawing2.jpg)
+
+*Figure: Dehazed image produced by the proposed method with patchwise haziness.*
+
 # ADMM Formulation
 
 The dehazing problem can be expressed as:
@@ -196,6 +209,13 @@ Haze reduction percentage:
 (||I − J||_F / ||I||_F) × 100
 
 ---
+
+| Type | Input Frobenius Norm | Output Frobenius Norm |
+|-----|-----|-----|
+| Thin Haze | 672.7853 | 564.9371 |
+| Moderate Haze | 680.6378 | 573.6836 |
+| Thick Haze | 799.4276 | 717.0184 |
+| Patch-wise Haze | 474.7369 | 444.4685 |
 
 # Frobenius Norm and Singular Values
 
@@ -235,6 +255,3 @@ The framework produces stable and visually improved dehazing results.
 
 ---
 
-# Repository Tag
-
-eval_2
