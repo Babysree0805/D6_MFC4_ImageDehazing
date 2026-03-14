@@ -240,6 +240,13 @@ The method works effectively across different scenes such as mountains, urban en
 
 ---
 
+# Details
+platform used : laptop
+hardware : cpu 
+time taken for uniform haziness removal : 7.874679 seconds
+time taken for patchwise haziness removal : 3.011576 seconds
+Matlab
+
 # Conclusion
 
 This project proposes an uncertainty-aware image dehazing framework combining:
