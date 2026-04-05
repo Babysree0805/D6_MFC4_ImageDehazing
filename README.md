@@ -1,5 +1,7 @@
 # D6_MFC4_ImageDehazing
 
+![Method Overview](Figures/amritalogo.jpeg)
+
 This repository contains the MFC-4 course project implementation and documentation.
 
 ---
