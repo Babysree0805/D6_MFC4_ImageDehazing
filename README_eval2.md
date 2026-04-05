@@ -1,36 +1,46 @@
-
-# Uncertainty-Aware Image Dehazing
+# D6_MFC4_ImageDehazing
 
 ## Mathematics for Computing 4 – Project
 Amrita School of Artificial Intelligence  
 Amrita Vishwa Vidyapeetham – Coimbatore
 
-### Team D6
+<img src="Figures/amritalogo.jpeg" width="100%">
 
-| Name | Roll Number |
-|-----|-----|
-| Sai Jagruth | CB.SC.U4AIE24310 |
-| Baby Sree | CB.SC.U4AIE24318 |
-| Vardhan | CB.SC.U4AIE24320 |
-| Likitha Reddy | CB.SC.U4AIE24361 |
+This repository contains the MFC-4 course project implementation and documentation.
 
 ---
 
-# Introduction
+## Project Title
 
-Outdoor images often suffer from visibility degradation due to atmospheric haze. 
-Haze is caused by scattering of light from particles such as dust, fog, smoke, and water droplets.
-
-This results in:
-
-- reduced contrast
-- color distortion
-- blurred edges
-- loss of distant details
-
-Image dehazing attempts to recover the clean scene radiance from such degraded images.
+**Uncertainty-Aware Image Dehazing Using Pseudo-Inverse Modeling Inspired by CVAE**
 
 ---
+
+## Team Details
+
+**Team D – 6**
+
+| Name        | Roll No            | Course Name | Program |
+|-------------|-------------------|------------|---------|
+| Sai Jagruth | CB.SC.U4AIE24310  | MFC        | AIE     |
+| Baby Sree   | CB.SC.U4AIE24318  | MFC        | AIE     |
+| Vardhan     | CB.SC.U4AIE24320  | MFC        | AIE     |
+| Likitha Reddy | CB.SC.U4AIE24361 | MFC        | AIE     |
+
+---
+
+## Abstract
+
+In this project, we worked on the problem of removing haze from a single image using a method that does not require any training data. Image dehazing is difficult because the same hazy image can have multiple possible clear versions. To handle this, we used a physics-based model and a regularized pseudo-inverse approach to reconstruct the image in a stable way. Instead of generating only one output, we created multiple dehazed images by slightly changing parameters to represent uncertainty, similar to the idea used in CVAE. These outputs are then combined using frequency domain fusion to get a final balanced image. The results show that our method improves visibility, restores details, and produces more natural colors, especially for thin and moderate haze conditions.
+
+## Introduction
+
+Images captured in outdoor environments often get affected by haze, fog, or dust. These particles scatter light and reduce the quality of the image. Because of this, images lose contrast, details become unclear, and colors look faded. This becomes a problem in applications like autonomous driving, surveillance, and object detection where clear images are important.
+
+The main challenge in image dehazing is that it is an ill-posed problem. From a single hazy image, it is not easy to accurately estimate important factors like transmission, atmospheric light, and scene depth. Traditional methods like histogram equalization only improve contrast but do not actually solve the haze problem properly. Even direct inversion of the physical model can fail when transmission values are very low, causing noise and unwanted artifacts.
+
+In this project, we tried to solve this problem using a different approach. Instead of using deep learning models that require large datasets, we focused on a physics-based solution. We used a regularized pseudo-inverse method to make the reconstruction stable. Also, instead of depending on a single output, we generated multiple possible dehazed images by varying parameters. This helps in capturing uncertainty in the process. Finally, all these outputs are combined using frequency domain fusion to produce a clear and stable image.
+
 
 # Difference Between Haze, Blur and Noise
 
@@ -249,14 +259,11 @@ Matlab
 
 # Conclusion
 
-This project proposes an uncertainty-aware image dehazing framework combining:
+In this project, we developed a method for single image dehazing using a combination of physical modeling and signal processing techniques. The atmospheric scattering model was used to represent how haze affects an image. To recover the clear image, we used a regularized pseudo-inverse approach, which helps avoid instability during inversion.
 
-- physics-based haze modeling
-- regularized pseudo-inverse reconstruction
-- uncertainty sampling
-- frequency-domain fusion
-- patch-selective correction
-- ADMM optimization
+To improve the results, we generated multiple dehazed images by changing parameters like transmission smoothing and regularization. This helped in handling uncertainty and avoided relying on a single reconstruction. These multiple outputs were then combined using frequency-domain fusion, which helped preserve important details while reducing noise and artifacts.
+
+We also applied contrast enhancement and color correction to improve the final output. The results show that the method works well for different haze conditions and improves both visibility and image quality. Overall, this approach provides a simple and effective solution for image dehazing without using any training data.
 
 The framework produces stable and visually improved dehazing results.
 
