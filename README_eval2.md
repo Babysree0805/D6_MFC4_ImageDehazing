@@ -269,3 +269,12 @@ The framework produces stable and visually improved dehazing results.
 
 ---
 
+## References
+
+1. H. Ding et al., *Robust Haze and Thin Cloud Removal via Conditional Variational Autoencoders*, IEEE TGRS, 2024.  
+   https://ieeexplore.ieee.org/document/10394023  
+
+2. K. He, J. Sun and X. Tang, "Single Image Haze Removal Using Dark Channel Prior," in IEEE Transactions on Pattern Analysis and Machine Intelligence 
+   https://ieeexplore.ieee.org/document/5567108
+
+---
