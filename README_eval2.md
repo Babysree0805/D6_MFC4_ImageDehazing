@@ -142,11 +142,11 @@ Final image is recovered using inverse Fourier transform.
 ---
 
 # Results
-![Result](Figures/Drawing3.jpg)
+<img src="Figures/Drawing3.jpg" width="100%">
 
 *Figure: Dehazed image produced by the proposed method with 3 different types of haze.*
 
-![Result](Figures/Drawing1.jpg)
+<img src="Figures/Drawing1.jpg" width="100%">
 
 *Figure: Dehazed image produced by the proposed method in different regions.*
 
@@ -184,7 +184,7 @@ This prevents modifying already clear regions.
 
 ---
 
-![Result](Figures/Drawing2.jpg)
+<img src="Figures/Drawing2.jpg" width="100%">
 
 *Figure: Dehazed image produced by the proposed method with patchwise haziness.*
 
