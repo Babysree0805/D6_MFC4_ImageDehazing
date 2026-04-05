@@ -16,12 +16,26 @@ This repository contains the MFC-4 course project implementation and documentati
 
 **Team D – 6**
 
-- Sai Jagruth – CB.SC.U4AIE24310  
-- Baby Sree – CB.SC.U4AIE24318
-- Vardhan – CB.SC.U4AIE24320
-- Likitha Reddy – CB.SC.U4AIE24361
+| Name        | Roll No            | Course Name | Program |
+|-------------|-------------------|------------|---------|
+| Sai Jagruth | CB.SC.U4AIE24310  | MFC        | AIE     |
+| Baby Sree   | CB.SC.U4AIE24318  | MFC        | AIE     |
+| Vardhan     | CB.SC.U4AIE24320  | MFC        | AIE     |
+| Likitha Reddy | CB.SC.U4AIE24361 | MFC        | AIE     |
 
 ---
+
+## Abstract
+
+In this project, we worked on the problem of removing haze from a single image using a method that does not require any training data. Image dehazing is difficult because the same hazy image can have multiple possible clear versions. To handle this, we used a physics-based model and a regularized pseudo-inverse approach to reconstruct the image in a stable way. Instead of generating only one output, we created multiple dehazed images by slightly changing parameters to represent uncertainty, similar to the idea used in CVAE. These outputs are then combined using frequency domain fusion to get a final balanced image. The results show that our method improves visibility, restores details, and produces more natural colors, especially for thin and moderate haze conditions.
+
+## Introduction
+
+Images captured in outdoor environments often get affected by haze, fog, or dust. These particles scatter light and reduce the quality of the image. Because of this, images lose contrast, details become unclear, and colors look faded. This becomes a problem in applications like autonomous driving, surveillance, and object detection where clear images are important.
+
+The main challenge in image dehazing is that it is an ill-posed problem. From a single hazy image, it is not easy to accurately estimate important factors like transmission, atmospheric light, and scene depth. Traditional methods like histogram equalization only improve contrast but do not actually solve the haze problem properly. Even direct inversion of the physical model can fail when transmission values are very low, causing noise and unwanted artifacts.
+
+In this project, we tried to solve this problem using a different approach. Instead of using deep learning models that require large datasets, we focused on a physics-based solution. We used a regularized pseudo-inverse method to make the reconstruction stable. Also, instead of depending on a single output, we generated multiple possible dehazed images by varying parameters. This helps in capturing uncertainty in the process. Finally, all these outputs are combined using frequency domain fusion to produce a clear and stable image.
 
 ## Objective
 
@@ -33,18 +47,6 @@ The goal is to generate a **stable and visually balanced dehazed RGB image** by 
 
 ---
 
-## Motivation 
-
-Most modern dehazing methods rely on **deep learning models** that require large datasets and training, and often behave as black boxes.
-
-This project is motivated by the idea that:
-- Image dehazing is an **ill-posed inverse problem**
-- A single hazy image can have **multiple valid dehazed solutions**
-- Uncertainty should be **modeled explicitly**, not ignored
-
-Inspired by CVAE-based uncertainty modeling, we explore how similar ideas can be applied **without learning**, using **physics-based models and inverse problem theory**.
-
----
 
 ## Project Description
 
